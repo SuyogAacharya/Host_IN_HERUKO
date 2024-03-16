@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title%} Team {% endblock %}
+{% load static %}
+{% block content %}
+<div class="all-title-box">
+  <div class="container text-center">
+    <h1>Our Team</h1>
+  </div>
+</div>
+
+<div id="teachers" class="section wb">
+  <div class="container">
+      <div class="row">
+          {% for member in team_members %}
+          <div class="col-lg-3 col-md-6 col-12">
+              <div class="our-team">
+                  <div class="team-img">
+                      <img src="{{ member.image.url }}" alt="{{ member.name }}" class="rounded-square">
+                      <div class="social">
+                          <ul>
+                              <li><a href="{{ member.whatsapp_link }}" class="fa fa-whatsapp"></a></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="team-content">
+                      <h3 class="title">{{ member.name }}</h3>
+                      <span class="post">{{ member.role }}</span>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+</div>
+
+{% endblock %}

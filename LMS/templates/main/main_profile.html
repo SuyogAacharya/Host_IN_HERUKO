@@ -1,0 +1,116 @@
+
+{% load static %}
+{% load course_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile - Entrance Master</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'assets/style.css' %}">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'assets/images/logo.jpg' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/logo.jpg' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+      
+</head>
+<body>
+
+<!-- Header -->
+<header class="profile_header">
+    <h1 class="profile_header_h1">Welcome to Entrance Master!</h1>
+</header>
+
+{% block content %}
+<!-- Student Profile -->
+<div class="profile_container">
+    <!-- Welcome Message with Image -->
+    <div class="welcome-box">
+        <img src="{% static 'assets/images/Welcome_image.jpg' %}" alt="Welcome Image" class="welcome-image">
+        <div class="welcome-text">Welcome, {{user.first_name}}</div> <!-- Display user's username -->
+    </div>
+
+    <!-- Profile Picture -->
+    <div class="profile-picture" id="profile-picture">
+        {% if student_profile.profile_picture %}
+            <img src="{{ student_profile.profile_picture.url }}" alt="Profile Picture">
+        {% else %}
+            <!-- Display a default image or a placeholder -->
+            <img src="{% static 'assets/images/default_profile_picture.png' %}" alt="Default Profile Picture">
+        {% endif %}
+        <!-- Camera icon -->
+        <button type="button" class="btn" id="upload-button">
+            <img src="{% static 'assets/images/camera_icon.png' %}" alt="Camera Icon" style="width: 20px; height: 20px;">
+        </button>
+    </div>
+
+    <!-- Profile Details -->
+    <div class="profile-details">
+        <p>{{ student_profile.user.get_full_name }}</p> <!-- Display user's full name -->
+    </div>
+
+    <!-- Profile Form -->
+    <div class="profile-form">
+        <form id="upload-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id="file-input" name="profile_picture" style="display: none;">
+        </form>
+    </div>
+</div>
+
+{% include "course/enrolled_course.html" %}
+
+
+<!-- JavaScript Files -->
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/all.js' %}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script>
+    // Show camera icon on click or hover
+    document.getElementById('profile-picture').addEventListener('mouseenter', function() {
+        document.getElementById('upload-button').style.display = 'block';
+    });
+
+    document.getElementById('profile-picture').addEventListener('mouseleave', function() {
+        document.getElementById('upload-button').style.display = 'none';
+    });
+
+    document.getElementById('profile-picture').addEventListener('click', function() {
+        document.getElementById('upload-button').style.display = 'block';
+    });
+
+    // Handle file upload
+    document.getElementById('upload-button').addEventListener('click', function() {
+        // Trigger file input click
+        document.getElementById('file-input').click();
+    });
+
+    // Handle file change
+    document.getElementById('file-input').addEventListener('change', function() {
+        var file = this.files[0];
+        var formData = new FormData();
+        formData.append('profile_picture', file);
+
+        // Send AJAX request to upload the file
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '{% url "main_profile" %}', true);
+        xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // File uploaded successfully
+                // Optionally, you can handle the response here
+                console.log('File uploaded successfully');
+            }
+        };
+        xhr.send(formData);
+    });
+</script>
+
+{% endblock %}
+</body>
+</html>

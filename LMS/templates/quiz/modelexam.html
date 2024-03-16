@@ -1,0 +1,14 @@
+{% extends 'base.html'  %}
+<div class="container mt-5 pt-5">
+  <p class="text-center">Select Course for MCQ</p>
+
+  <div class="row">
+      {% for quiz in quizzes %}
+      <div class="col-lg-3">
+          <a href="/{{quiz.id}}" class="btn btn-primary">{{quiz.quiz_title}}</a>
+                  </div>
+
+      {% endfor %}
+  </div>
+
+</div>

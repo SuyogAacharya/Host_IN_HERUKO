@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EntranceMaster - {% block title %} {% endblock %} </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+<link rel="stylesheet" href="{% static 'assets/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/versions.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Modernizer for Portfolio -->
+		<script src="{% static 'assets/js/modernizer.js' %}"></script>
+
+    
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <style>
+        .team-img img.rounded-square {
+      width: 150px; /* Set your preferred width */
+      height: 150px; /* Set your preferred height */
+      object-fit: cover; /* Maintain aspect ratio and cover the container */
+      border-radius: 50%; /* Make it a circle */
+  }
+      </style>
+</head>
+<body class="host_version"> 
+<body class="host_version"> 
+  
+    {% include 'components/header.html' %}
+    {% block content %}{% endblock %}
+    {% include 'components/footer.html' %}
+   
+                 
+    <!-- ALL JS FILES -->
+    <script src="{% static 'assets/js/all.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+	<script src="{% static 'assets/js/timeline.min.js' %}"></script>
+	<script>
+		timeline(document.querySelectorAll('.timeline'), {
+			forceVerticalMode: 700,
+			mode: 'horizontal',
+			verticalStartPosition: 'left',
+			visibleItems: 4
+		});
+	</script>
+</body>
+</html>

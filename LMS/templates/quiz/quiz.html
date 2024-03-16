@@ -1,0 +1,17 @@
+
+{% for question in questions %}
+    <div>
+        <p>{{ question.question_text }}</p>
+        {% if question.image %}
+            <img src="{{ question.image.url }}" alt="Question Image">
+        {% endif %}
+        <form action="{% url 'submit_answer' %}" method="post">
+            {% csrf_token %}
+            {% for option in question.option_set.all %}
+                <input type="radio" name="question{{ question.id }}" value="{{ option.id }}">
+                <label>{{ option.option_text }}</label><br>
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endfor %}

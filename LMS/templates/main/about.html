@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} About_Us {% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="all-title-box">
+  <div class="container text-center">
+    <h1>About Us</h1>
+  </div>
+</div>
+
+<div id="overviews" class="section lb">
+  <div class="container">
+    <div class="section-title row text-center">
+      <div class="col-md-8 offset-md-2">
+        <h3>About</h3>
+        <p class="lead">Entrance Master, we proudly stand as a registered educational haven, where the enchanting 
+          world of learning unfolds before your very eyes. Our digital realm is dedicated to the art of education,
+          offering a splendid array of Live and Recorded courses designed to elevate your journey in the realms of
+          Medical Entrance Classes and the esteemed Chartered Accountant profession.
+          Join us in this delightful quest for knowledge, where every moment is a step closer to your dreams.</p>
+      </div>
+    </div><!-- end title -->
+    
+    <div class="row align-items-center">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="post-media wow fadeIn">
+          <img src="{% static 'assets/images/about_03.jpg' %}" alt="" class="img-fluid img-rounded">
+        </div><!-- end media -->
+      </div><!-- end col -->
+      
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="message-box">
+          <h4>2023 BEST Smart education institute</h4>
+          <h2>Entrance-Master</h2>
+          <p>Entrance Master, we proudly stand as a registered educational haven, 
+            where the enchanting world of learning unfolds before your very eyes. 
+            Our digital realm is dedicated to the art of education, offering a splendid array of 
+            Live and Recorded courses designed to elevate your journey in the realms of Medical 
+            Entrance Classes and the esteemed Chartered Accountant profession. Join us in this 
+            delightful quest for knowledge, where every moment is a step closer to your dreams.</p>
+        </div>
+      </div><!-- end col -->
+    </div><!-- end row -->
+  </div><!-- end container -->
+</div><!-- end section -->
+
+<div class="hmv-box">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="inner-hmv">
+          <div class="icon-box-hmv"><i class="flaticon-achievement"></i></div>
+          <h3>{{ mission.title }}</h3>
+          <div class="tr-pa">{{ mission.title|first }}</div>
+          <p>{{ mission.description|linebreaksbr }}</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="inner-hmv">
+          <div class="icon-box-hmv"><i class="flaticon-eye"></i></div>
+          <h3>{{ vision.title }}</h3>
+          <div class="tr-pa">{{ vision.title|first }}</div>
+          <p>{{ vision.description|linebreaksbr }}</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="inner-hmv">
+          <div class="icon-box-hmv"><i class="flaticon-history"></i></div>
+          <h3>{{ history.title }}</h3>
+          <div class="tr-pa">{{ history.title|first }}</div>
+          <p>{{ history.description|linebreaksbr }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
